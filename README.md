@@ -73,6 +73,30 @@ If everything goes well, you should be able to see the screen that looks like th
 There, you can select which SIM cards on your phone you would like to use to send SMS. Click on a SIM card for it to become active. You can only have one active sim card per country, and that card will be used for sending SMS to that country, whenever you send a phone number recipient located in that country in the send SMS request. 
 Finally, you can test sending SMS. To send an SMS, send the following request to your server:
 
+<details>
+ <summary><code>POST</code> <code><b>SERVER_ADDRESS/send-sms</b></code> <code>(Use your own SMS server for sending a message)</code></summary>
+
+##### Header
+
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | name         |  type     | data type               | description                                                           |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | Content-Type |  required | String                  | Should be "application/json"                                          |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+
+##### Body
+
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | name         |  type     | data type               | description                                                           |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | secret       |  required | String                  | The password that you have created in step 3                          |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | phone_number |  required | String                  | Recipient phone number, with a country prefix. E.g. +11234567890      |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | text         |  required | String                  | Message body                                                          |
+> |--------------|-----------|-------------------------|-----------------------------------------------------------------------|
+
+</details>
 
 If everything is working well, the message should be sent, and you will be able to see it in your SMS app. 
 
