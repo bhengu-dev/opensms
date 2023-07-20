@@ -43,7 +43,7 @@ This will install all the required dependencies for our project.
 Determine the address that you would like to host your server on. Also, create a password that will be used to authenticate between the mobile app that you run on your phone and your server. It can be any string, but make it unique, so the others will not be able to use your server to send SMS for them. 
 In this example, I will be running the server locally, on address `http://192.168.1.40`, and my password will be `unique-password-49`. 
 Once you have determined your server address and password, you will need to make the following changes to the code:
-1. In `opensms/app/App.js`, replace SERVER_ADDRESS and YOUR_SECRET with your address and password, if running on local network use address like this: `http://192.168.1.20`
+1. In `opensms/app/App.js`, replace SERVER_ADDRESS and YOUR_SECRET with your address and password, if running on local network use address like this: `http://192.168.1.40`
 2. In `opensms/server/app.js`, do the same thing for YOUR_SECRET, in line 4
 3. In `opensms/app/android/app/src/main/java/com/textflow/smssender/MyFirebaseMessagingService.java`, replace YOUR_SECRET in line 37 with your password
 
