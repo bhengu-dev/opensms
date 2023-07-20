@@ -1,9 +1,15 @@
 # TextFlow Open SMS
 An open-source solution to send SMS from your own devices using REST API. 
 
+This option just requires a dedicated spare phone, with a sim card, and allows you to send as much SMS as you can, which could even be free if you opted in for some mobile carriers' unlimited SMS options, but be warned, some SMS carriers may limit your ability to send SMS this way, which could result even in your subscription being canceled. 
+
+You will also need a computer to host your SMS server, which can also be done on your local network. If you do not want to hassle with setting up your own server, we have a [solution at just a fraction of our normal SMS price](https://textflow.me/smsgateway). 
+
 ## How it works
 
-The main idea in this solution is to use android phone's native ability to send SMS programmatically. We create the listener on the android phone, that listens for the Firebase notifications that we send from our server, and when we receive a notification, we send the SMS corresponding to the data passed in that notification. Since our SMS server can now send the SMS, it can open an endpoint that will let us send SMS from any of the phones that are connected to it. Our SMS server also handles the logic of multiple senders, and which message will be sent to which sender phone. Currently, one recipient country receives message from one phone number, with the SIM card in that country, and because of that, you can only register one phone number for each country that you want to send SMS to. 
+The main idea in this solution is to use android phone's native ability to send SMS programmatically. We create the listener on the android phone, that listens for the Firebase notifications that we send from our server, and when we receive a notification, we send the SMS corresponding to the data passed in that notification. Since our SMS server can now send the SMS, it can open an endpoint that will let us send SMS from any of the phones that are connected to it.
+
+Our SMS server also handles the logic of multiple senders, for each sim card you can create a sender for every country. We also support load-balancing, if there are multiple senders that send to the same country, the server will chose the one with the least SMS sent today. The sim-cards are identified by the names that you give them, so make sure they are unique. You can also mark senders as worldwide (if there are no senders for a specific country, server will use a worldwide sender) or turn their safety on (limit SMS rate to 10 SMS / min). If you want to change some parameters, you can take a look at the code, or contact us at support@textflow.me if you need some help. 
 
 ![image](https://github.com/Skocimis/opensms/assets/24946127/15849bdf-9082-46bf-9778-5f6be3f4f465)
 
@@ -68,9 +74,9 @@ npx expo run:android
 Your android phone that you use for testing may prompt you with something, accept it. This process may take several minutes, depending on the hardware capabilities of your devices. 
 If everything goes well, you should be able to see the screen that looks like this
 
-![image](https://github.com/Skocimis/opensms/assets/24946127/33904926-a721-4c41-a878-3a2c6fe72ad3)
+![photo_5891140446896373807_y](https://github.com/Skocimis/opensms/assets/24946127/0ba50311-0132-4d66-9043-6cff66d29ae3)
 
-There, you can select which SIM cards on your phone you would like to use to send SMS. Click on a SIM card for it to become active. You can only have one active sim card per country, and that card will be used for sending SMS to that country, whenever you send a phone number recipient located in that country in the send SMS request. 
+There, you can create senders for each SIM card. When adding a sender, just choose where it would send SMS to. If you wanted to send to multiple countries from one SIM card, just create multiple senders for it. 
 Finally, you can test sending SMS. To send an SMS, send the following request to your server:
 
 <details>
