@@ -5,6 +5,8 @@ This option just requires a dedicated spare phone, with a sim card, and allows y
 
 You will also need a computer to host your SMS server, which can also be done on your local network. If you do not want to hassle with setting up your own server, we have a [solution at just a fraction of our normal SMS price](https://textflow.me/smsgateway). 
 
+If, besides sending SMS, you also need to be able to receive SMS, take a look at [this branch](https://github.com/Skocimis/opensms/tree/ReceiveSMSAddOn).
+
 ## How it works
 
 The main idea in this solution is to use android phone's native ability to send SMS programmatically. We create the listener on the android phone, that listens for the Firebase notifications that we send from our server, and when we receive a notification, we send the SMS corresponding to the data passed in that notification. Since our SMS server can now send the SMS, it can open an endpoint that will let us send SMS from any of the phones that are connected to it.
