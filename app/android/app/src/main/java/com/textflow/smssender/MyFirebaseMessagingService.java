@@ -15,6 +15,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -53,8 +54,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             return;
 
         SmsManager smsManager = SmsManager.getSmsManagerForSubscriptionId(customSimSubscriptionInfo.getSubscriptionId());
-        smsManager.sendTextMessage(phoneNumber, null, text, null, null);
-        Log.d("Kurac", "From: " + phoneNumber+" "+text+" "+password);
+        
+        ArrayList<String> parts = smsManager.divideMessage(text);
+
+        smsManager.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
     }
 
     public static String getToken(Context context) {
